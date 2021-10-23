@@ -120,6 +120,14 @@ console.log(user)
         this.setState({note: event.target.value});
     }
 
+    getHeader = () => {
+        if(this.state.id === "_add") {
+            return <h3 className = "text-center">Add User</h3>
+        } else {
+            return <h3 className = "text-center">Update User</h3>
+        }
+    }
+
     render() {
         return (
             <div>
@@ -129,7 +137,9 @@ console.log(user)
 
                         <div className = "card col-md-6 offset-md-3 offset-md-3">
 
-                            <h3 className = "text-center"> Add User </h3>
+                            {
+                                this.getHeader()
+                            }
 
                             <div className = "card-body">
 
