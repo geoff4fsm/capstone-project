@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UserSevice from '../services/UserSevice';
+import UserService from '../services/UserService';
 
 class ListUsers extends Component {
     constructor(props) {
@@ -8,11 +8,15 @@ class ListUsers extends Component {
         this.state = {
             users: []
         }
+
         this.addUser = this.addUser.bind(this);
+        this.editUser = this.editUser.bind(this);
+        this.viewUser = this.viewUser.bind(this);
+        this.deleteUser = this.deleteUser.bind(this);
     }
 
     addUser = () => {
-        this.props.history.push('/add-user/_add');
+        this.props.history.push('/add-user/add');
     }
 
     editUser = (id) => {
@@ -24,14 +28,14 @@ class ListUsers extends Component {
     }
 
     deleteUser = (id) => {
-        UserSevice.deleteUser(id).then( res => {
+        UserService.deleteUser(id).then( res => {
             this.setState({users: this.state.users.filter(user => user.id !== id)}); 
         })
         
     }
 
     componentDidMount = () => {
-        UserSevice.getUsers().then((res) => {
+        UserService.getUsers().then((res) => {
             this.setState({ users: res.data});
         });
     }
@@ -41,7 +45,7 @@ class ListUsers extends Component {
             <div>
                 <h2 className = "text-center">Users List</h2>
                 <div className = "row">
-                    <button className = "btn btn-primary" onClick = {this.addUser}> Add User </button>
+                    <button type = "button" className = "btn btn-primary" onClick = {this.addUser}> Add User </button>
                 </div>
                 <div className = "row">
                     <table className = "table table-striped table-bordered">
@@ -74,8 +78,8 @@ class ListUsers extends Component {
                                         <td> { user.note}</td>
                                         <td>
                                             <button onClick = { () => this.editUser(user.id)} className = "btn btn-info">Update</button>
-                                            <button style = {{marginLeft: "10px"}} onClick = { () => this.deleteUser(user.id)} className = "btn btn-danger">Delete</button>
-                                            <button style = {{marginLeft: "10px"}} onClick = { () => this.viewUser(user.id)} className = "btn btn-info">View</button>
+                                            <button type = "button" style = {{marginLeft: "10px"}} onClick = { () => this.deleteUser(user.id)} className = "btn btn-danger">Delete</button>
+                                            <button type = "button" style = {{marginLeft: "10px"}} onClick = { () => this.viewUser(user.id)} className = "btn btn-info">View</button>
                                         </td>
                                     </tr>
                                 )

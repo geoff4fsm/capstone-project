@@ -5,6 +5,7 @@ import Header from './components/Header';
 import ListUsers from './components/ListUsers';
 import Footer from './components/Footer';
 import CreateUser from './components/CreateUser';
+import ViewUser from './components/ViewUser';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
                 <Route exact path = "/" component = {ListUsers}></Route>
                 <Route exact path = "/users" component = {ListUsers}></Route>
                 <Route exact path = "/add-user/:id" component = {CreateUser}></Route>
+                <Route exact path = "/view-user/:id" component = {ViewUser}></Route>
 
               </Switch>
 

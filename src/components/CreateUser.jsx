@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UserSevice from '../services/UserSevice';
+import UserService from '../services/UserService';
 
  class CreateUser extends Component {
      constructor(props) {
@@ -31,13 +31,13 @@ import UserSevice from '../services/UserSevice';
 
     componentDidMount() {
 
-        if(this.state.id === '_add') {
+        if(this.state.id === 'add') {
 
             return
 
         } else {
 
-            UserSevice.getUserById(this.state.id).then( res => {
+             UserService.getUserById(this.state.id).then( res => {
 
                 let user = res.data;
 console.log(user)
@@ -74,9 +74,9 @@ console.log(user)
 
         console.log('user => ' + JSON.stringify(user));
 
-        if(this.state.id === '_add') {
+        if(this.state.id === 'add') {
 
-            UserSevice.createUser(user).then(res => {
+            UserService.createUser(user).then(res => {
 
                 this.props.history.push('/users');
 
@@ -84,7 +84,7 @@ console.log(user)
 
         } else {
 
-                UserSevice.updateUser(user, this.state.id).then( res => {
+                UserService.updateUser(user, this.state.id).then( res => {
 
                     this.props.history.push('/users');
 
