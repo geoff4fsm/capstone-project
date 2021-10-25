@@ -20,8 +20,8 @@ import com.perscholas.example.exception.ResourceNotFoundException;
 import com.perscholas.example.model.User;
 import com.perscholas.example.repository.UserRepository;
 
-@CrossOrigin( origins = "http://localhost:3000")
-//@CrossOrigin
+//@CrossOrigin( origins = "http://localhost:3000")
+@CrossOrigin
 @RestController
 @RequestMapping ("/api/")
 
@@ -68,13 +68,15 @@ public class UserController {
 		user.setEntrydate(userDetails.getEntrydate());
 		user.setEntrytime(userDetails.getEntrytime());
 		user.setGlucose(userDetails.getGlucose());
-		int gluc = userDetails.getGlucose();
-		String inRange = gluc <= 70 ? "Low Treat Now" :
-			gluc > 70 && gluc <= 140 ? "In Range" :
-				gluc > 140 && gluc < 240 ? "High" :
-					gluc >= 240 ? "High Treat Now" :
-						"High Treat Now" ;
-		user.setIn_range(inRange);
+		user.setIn_range(userDetails.getIn_range());
+//		int gluc = userDetails.getGlucose();
+//		String inRange = gluc <= 70 ? "Low Treat Now" :
+//			gluc > 70 && gluc < 90 ? "Low" :
+//				gluc >= 90 && gluc <= 150 ? "In Range" :
+//					gluc > 150 && gluc < 240 ? "High" :
+//						"High Treat Now" ;
+				
+//		user.setIn_range(inRange);
 		user.setNote(userDetails.getNote());
 		
 		User updatedUser = userRepository.save(user);
@@ -82,8 +84,8 @@ public class UserController {
 	}
 	
 	// delete employee rest api
-		@DeleteMapping("/glucose_users/{id}")
-		public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable int id){
+		@DeleteMapping("/users/{id}")
+		public ResponseEntity<Map<String, Boolean>>deleteUser(@PathVariable int id){
 			User user = userRepository.findById(id)
 					.orElseThrow(() -> new ResourceNotFoundException("User not exist with id :" + id));
 			

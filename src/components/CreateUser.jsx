@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import UserService from '../services/UserService';
 
+
+
  class CreateUser extends Component {
+
      constructor(props) {
          super(props)
 
@@ -69,7 +72,7 @@ console.log(user)
             glucose: this.state.glucose, 
             in_range: this.state.in_range,
             note: this.state.note 
-        
+                   
         };
 
         console.log('user => ' + JSON.stringify(user));
@@ -111,9 +114,19 @@ console.log(user)
     changeEntryTimeHandler = (event) => {
         this.setState({entrytime: event.target.value});
     }
-
+    
     changeGlucoseHandler = (event) => {
         this.setState({glucose: event.target.value});
+
+        const gluc = event.target.value;
+		const inRange = gluc <= 70 ? "Low Treat Now" :
+			gluc > 70 && gluc < 90 ? "Low" :
+                gluc >= 90 && gluc <= 150 ? "In Range" :
+				    gluc > 150 && gluc < 240 ? "High" :
+					    "High Treat Now" ;
+
+        this.setState({in_range: inRange})
+
     }
 
     changeNoteHandler = (event) => {

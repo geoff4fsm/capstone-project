@@ -29,6 +29,7 @@ class ListUsers extends Component {
 
     deleteUser = (id) => {
         UserService.deleteUser(id).then( res => {
+            console.log(res);
             this.setState({users: this.state.users.filter(user => user.id !== id)}); 
         })
         
@@ -51,6 +52,7 @@ class ListUsers extends Component {
                     <table className = "table table-striped table-bordered">
 
                         <thead>
+
                             <tr>
                                 <th> User First Name </th>
                                 <th> User Last Name </th>
@@ -66,8 +68,8 @@ class ListUsers extends Component {
 
                         <tbody>
                             {
-                                this.state.users.map(
-                                    user =>
+                                this.state.users.map( user =>
+                                    
                                     <tr key = {user.id}>
                                         <td> { user.fname}</td>
                                         <td> { user.lname}</td>

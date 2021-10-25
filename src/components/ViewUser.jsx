@@ -12,6 +12,10 @@ import UserService from '../services/UserService';
         }
     }
 
+    cancel = () => {
+        this.props.history.push('/');
+    }
+
     componentDidMount(){
 
         UserService.getUserById(this.state.id).then( res => {
@@ -28,35 +32,37 @@ import UserService from '../services/UserService';
                     <div className = "card-body">
 
                         <div className = "row">
-                            <label> First Name: </label>
-                            <div> { this.state.user.fname }</div>
+                            <label> First Name: { this.state.user.fname }</label>
                             <br></br>
                         </div>
+                        <br></br>
 
                         <div className = "row">
-                            <label> Last Name: </label>
-                            <div> { this.state.user.lname }</div>
+                            <label> Last Name: { this.state.user.lname }</label>
                         </div>
+                        <br></br>
 
                         <div className = "row">
-                            <label> Entry Date: </label>
-                            <div> { this.state.user.entrydate }</div>
+                            <label> Entry Date: { this.state.user.entrydate }</label>
                         </div>
+                        <br></br>
 
                         <div className = "row">
-                            <label> Entry Time: </label>
-                            <div> { this.state.user.entrytime }</div>
+                            <label> Entry Time: { this.state.user.entrytime }</label>
                         </div>
+                        <br></br>
 
                         <div className = "row">
-                            <label> Glucose Entered: </label>
-                            <div> { this.state.user.glucose }</div>
+                            <label> Glucose Entered: { this.state.user.glucose }</label>
                         </div>
+                        <br></br>
 
                         <div className = "row">
-                            <label> Glucose In Range?: </label>
-                            <div> { this.state.user.in_range }</div>
+                            <label> Glucose In Range?: { this.state.user.in_range }</label>
                         </div>
+                        <br></br>
+
+                        <button className = "btn btn-info" onClick = {this.cancel} >Return</button>
                     </div>
 
                 </div>
