@@ -9,5 +9,5 @@ import com.perscholas.example.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer>{
-	//List<Employee> findByName(String name);
+	
 }

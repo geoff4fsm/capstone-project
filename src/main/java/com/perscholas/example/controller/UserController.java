@@ -44,34 +44,31 @@ public class UserController {
 	}
 	
 	// get user by id rest api
-	@GetMapping("/employees/{id}")
-	public ResponseEntity<User> getEmployeeById(@PathVariable int id) 
+	@GetMapping("/users/{id}")
+	public ResponseEntity <User> getUserById(@PathVariable int id) 
 	{
 		User user = userRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("User not exist with id :" + id));
+				.orElseThrow(() -> new ResourceNotFoundException
+						("User not exist with id :" + id));
+		
 		return ResponseEntity.ok(user);
 	}
 		
-	// update employee rest api
+	// update user rest api
 	
 	@PutMapping("/users/{id}")
-	public ResponseEntity<User> updateEmployee(@PathVariable int id, @RequestBody User userDetails)
+	public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User userDetails)
 	{
 		User user = userRepository.findById(id)
-				.orElseThrow(() -> new ResourceNotFoundException("User not exist with id :" + id));
+				.orElseThrow(() -> new ResourceNotFoundException
+						("User not exist with id :" + id));
 		
 		user.setFname(userDetails.getFname());
 		user.setLname(userDetails.getLname());
-		user.setDate(userDetails.getDate());
-		user.setTime(userDetails.getTime());
+		user.setEntrydate(userDetails.getEntrydate());
+		user.setEntrytime(userDetails.getEntrytime());
 		user.setGlucose(userDetails.getGlucose());
-		int gluc = (userDetails.getGlucose());
-		String inRange = gluc <= 70 ? "Low Treat Now" :
-			gluc > 70 && gluc <= 140 ? "In Range" :
-				gluc > 140 ? "High" :
-					gluc >= 240 ? "High Treat Now" : 
-						"High Treat Now";
-		user.setIn_range(inRange);
+		user.setIn_range(userDetails.getIn_range());
 		user.setNote(userDetails.getNote());
 		
 		User updatedUser = userRepository.save(user);
@@ -80,7 +77,7 @@ public class UserController {
 	
 	// delete employee rest api
 		@DeleteMapping("/users/{id}")
-		public ResponseEntity<Map<String, Boolean>> deleteUser(@PathVariable int id){
+		public ResponseEntity<Map<String, Boolean>>deleteUser(@PathVariable int id){
 			User user = userRepository.findById(id)
 					.orElseThrow(() -> new ResourceNotFoundException("User not exist with id :" + id));
 			

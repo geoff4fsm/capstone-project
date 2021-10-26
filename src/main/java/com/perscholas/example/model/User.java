@@ -2,18 +2,18 @@ package com.perscholas.example.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 
 @Entity
-@Table (name = "users")
+@Table (name = "glucose_users")
 public class User {
 	
 	@Id
-	//GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column (name = "fname")
@@ -22,11 +22,11 @@ public class User {
 	@Column (name = "lname")
 	private String lname;
 	
-	@Column (name = "date")
-	private String date;
+	@Column (name = "entrydate")
+	private String entrydate;
 	
-	@Column (name = "time")
-	private String time;
+	@Column (name = "entrytime")
+	private String entrytime;
 	
 	@Column (name = "glucose")
 	private int glucose;
@@ -43,16 +43,15 @@ public class User {
 		
 	}
 	
-
-	public User(String fname, String lname, String date, String time, int glucose, String in_range, String note) 
+	public User(String fname, String lname, String entrydate, String entrytime, int glucose, String in_range, String note) 
 	{
 		
 		super();
 		
 		this.fname = fname;
 		this.lname = lname;
-		this.date = date;
-		this.time = time;
+		this.entrydate = entrydate;
+		this.entrytime = entrytime;
 		this.glucose = glucose;
 		this.in_range = in_range;
 		this.note = note;
@@ -63,65 +62,79 @@ public class User {
 		return id;
 	}
 
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 
 	public String getFname() {
 		return fname;
 	}
 
+
 	public void setFname(String fname) {
 		this.fname = fname;
 	}
+
 
 	public String getLname() {
 		return lname;
 	}
 
+
 	public void setLname(String lname) {
 		this.lname = lname;
 	}
 
-	public String getDate() {
-		return date;
+
+	public String getEntrydate() {
+		return entrydate;
 	}
 
-	public void setDate(String date) {
-		this.date = date;
+
+	public void setEntrydate(String entrydate) {
+		this.entrydate = entrydate;
 	}
 
-	public String getTime() {
-		return time;
+
+	public String getEntrytime() {
+		return entrytime;
 	}
 
-	public void setTime(String time) {
-		this.time = time;
+
+	public void setEntrytime(String entrytime) {
+		this.entrytime = entrytime;
 	}
+
 
 	public int getGlucose() {
 		return glucose;
 	}
 
+
 	public void setGlucose(int glucose) {
 		this.glucose = glucose;
 	}
+
 
 	public String getIn_range() {
 		return in_range;
 	}
 
+
 	public void setIn_range(String in_range) {
 		this.in_range = in_range;
 	}
+
 
 	public String getNote() {
 		return note;
 	}
 
+
 	public void setNote(String note) {
 		this.note = note;
 	}
-	
 
 }
