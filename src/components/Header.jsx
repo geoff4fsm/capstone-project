@@ -17,7 +17,7 @@ import React, { Component } from 'react'
             <div>
                 <header>
                     <nav className = "navbar-expand-md navbar-dark bg-dark">
-                        <div className = "navbar-brand">
+                        <div className = "navbar-brand text-center">
                             Glucose Monitor App
                         </div>
                     </nav>
