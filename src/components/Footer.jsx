@@ -1,27 +1,23 @@
 import React, { Component } from 'react'
 
- 
+class FooterComponent extends Component {
+    constructor(props) {
+        super(props)
 
-
-    class Footer extends Component {
-        constructor(props) {
-            super(props)
-    
-            this.state = {
-                
-            }
+        this.state = {
+                 
         }
+    }
 
     render() {
         return (
             <div>
                 <footer className = "footer">
-                    
-                    <span className = "text-muted">Glucose Monitor Footer</span>
-
+                    <span className="text-muted">Glucose Monitor Footer</span>
                 </footer>
             </div>
         )
     }
 }
-export default Footer
+
+export default FooterComponent
