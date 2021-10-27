@@ -16,7 +16,7 @@ function App() {
 
             <div className="container">
 
-              <Switch> 
+              <Switch> // route to pages
 
                 <Route exact path = "/" component = {ListUsers}></Route>
                 <Route exact path = "/users" component = {ListUsers}></Route>

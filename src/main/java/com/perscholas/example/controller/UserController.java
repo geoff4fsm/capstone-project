@@ -30,6 +30,7 @@ public class UserController {
 	private UserRepository userRepository;
 	
 	// get all users
+	
 	@GetMapping("/users")
 	public List<User> getAllUsers() 
 	{
@@ -37,6 +38,7 @@ public class UserController {
 	}
 
 	// create user rest api
+	
 	@PostMapping("/users")
 	public User createUser(@RequestBody User user) 
 	{
@@ -44,6 +46,7 @@ public class UserController {
 	}
 	
 	// get user by id rest api
+	
 	@GetMapping("/users/{id}")
 	public ResponseEntity <User> getUserById(@PathVariable int id) 
 	{
@@ -76,6 +79,7 @@ public class UserController {
 	}
 	
 	// delete employee rest api
+	
 		@DeleteMapping("/users/{id}")
 		public ResponseEntity<Map<String, Boolean>>deleteUser(@PathVariable int id){
 			User user = userRepository.findById(id)

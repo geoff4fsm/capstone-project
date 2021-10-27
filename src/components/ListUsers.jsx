@@ -15,27 +15,40 @@ class ListUsers extends Component {
         this.deleteUser = this.deleteUser.bind(this);
     }
 
+    // add user function
+
     addUser = () => {
         this.props.history.push('/add-user/add');
     }
+
+    // edit user function
 
     editUser = (id) => {
         this.props.history.push(`/add-user/${id}`);
     }
 
+    // view user function
+
     viewUser = (id) => {
         this.props.history.push(`/view-user/${id}`);
     }
 
+    // delete user function
+
     deleteUser = (id) => {
         UserService.deleteUser(id).then(res => {
-            console.log(res);
+            
+            // filters out deleted user from List 
+
             this.setState({ users: this.state.users.filter(user => user.id !== id) });
         })
 
     }
 
     componentDidMount = () => {
+
+        // gets all users
+
         UserService.getUsers().then((res) => {
             this.setState({ users: res.data });
         });
@@ -49,6 +62,7 @@ class ListUsers extends Component {
                     <button type="button" className="btn btn-primary" onClick={this.addUser}> Add User </button>
                 </div>
                 <div className="row">
+
                     <table className="table table-striped table-bordered">
 
                         <thead>
@@ -78,10 +92,13 @@ class ListUsers extends Component {
                                         <td> {user.glucose}</td>
                                         <td> {user.in_range}</td>
                                         <td> {user.note}</td>
+
                                         <td>
+
                                             <button onClick={() => this.editUser(user.id)} className="btn btn-info">Update</button>
                                             <button type="button" style={{ marginLeft: "10px" }} onClick={() => this.deleteUser(user.id)} className="btn btn-danger">Delete</button>
                                             <button type="button" style={{ marginLeft: "10px" }} onClick={() => this.viewUser(user.id)} className="btn btn-info">View</button>
+
                                         </td>
                                     </tr>
                                 )

@@ -8,6 +8,8 @@ class CreateUser extends Component {
     constructor(props) {
         super(props)
 
+        // define state
+
         this.state = {
 
             id: this.props.match.params.id,
@@ -20,6 +22,8 @@ class CreateUser extends Component {
             note: ""
 
         }
+
+        // bind functions
 
         this.changeFnameHandler = this.changeFnameHandler.bind(this);
         this.changeLnameHandler = this.changeLnameHandler.bind(this);
@@ -34,13 +38,13 @@ class CreateUser extends Component {
 
     componentDidMount() {
 
-        if (this.state.id === 'add') {
+        if (this.state.id === 'add') {  // if add new user or update existing user
 
             return
 
         } else {
 
-            UserService.getUserById(this.state.id).then(res => {
+            UserService.getUserById(this.state.id).then(res => {  // update existing user by id
 
                 let user = res.data;
 
@@ -59,6 +63,8 @@ class CreateUser extends Component {
         }
     }
 
+    // save or update user function
+
     saveUser = (e) => {
 
         e.preventDefault();
@@ -75,7 +81,7 @@ class CreateUser extends Component {
 
         };
 
-        if (this.state.id === 'add') {
+        if (this.state.id === 'add') {  // add new user
 
             UserService.createUser(user).then(res => {
 
@@ -85,7 +91,7 @@ class CreateUser extends Component {
 
         } else {
 
-            UserService.updateUser(user, this.state.id).then(res => {
+            UserService.updateUser(user, this.state.id).then(res => {  // update existing user
 
                 this.props.history.push('/users');
 
@@ -93,31 +99,48 @@ class CreateUser extends Component {
         }
     }
 
+    // cancel user update
+
     cancel = () => {
         this.props.history.push('/');
     }
+
+    // assign value to first name function
 
     changeFnameHandler = (event) => {
         this.setState({ fname: event.target.value });
     }
 
+    // assign value to last name function
+
     changeLnameHandler = (event) => {
         this.setState({ lname: event.target.value });
     }
+
+    // assign value to entry date function
 
     changeEntryDateHandler = (event) => {
         this.setState({ entrydate: event.target.value });
     }
 
+    // assign value to entry time function
+
     changeEntryTimeHandler = (event) => {
         this.setState({ entrytime: event.target.value });
     }
 
+    // assign value to entered glucose and in range function
+
     changeGlucoseHandler = (event) => {
         this.setState({ glucose: event.target.value });
 
-        const gluc = event.target.value;
-        const inRange = gluc <= 70 ? "Low Treat Now" :
+        // assign value to glucose constant
+
+        const gluc = event.target.value; 
+        
+        // ternary to assign value to in range from glucose value
+
+        const inRange = gluc <= 70 ? "Low Treat Now" : 
             gluc > 70 && gluc < 90 ? "Low" :
                 gluc >= 90 && gluc <= 150 ? "In Range" :
                     gluc > 150 && gluc < 240 ? "High" :
@@ -127,9 +150,13 @@ class CreateUser extends Component {
 
     }
 
+    // assign value to note if entered
+
     changeNoteHandler = (event) => {
         this.setState({ note: event.target.value });
     }
+
+    // function for header of add or update user
 
     getHeader = () => {
         if (this.state.id === "add") {
@@ -154,7 +181,7 @@ class CreateUser extends Component {
 
                             <div className="card-body">
 
-                                <form>
+                                <form>  // user entry values assigned form
 
                                     <div className="form-group">
                                         <label> First Name </label>
@@ -192,6 +219,8 @@ class CreateUser extends Component {
                                             value={this.state.note} onChange={this.changeNoteHandler} />
                                     </div>
 
+                                    // buttons to save user entries or cancel
+
                                     <button className="btn btn-success" onClick={this.saveUser}>Save</button>
                                     <button className="btn btn-danger" onClick={this.cancel} style={{ marginLeft: "10px" }}>Cancel</button>
 
@@ -204,4 +233,5 @@ class CreateUser extends Component {
         )
     }
 }
+
 export default CreateUser

@@ -9,12 +9,14 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table (name = "glucose_users")
+@Table (name = "glucose_users")  // table name in mysql
 public class User {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)  // user id auto generated
 	private int id;
+	
+	// column names and assigned variable names
 	
 	@Column (name = "fname")
 	private String fname;
@@ -37,11 +39,14 @@ public class User {
 	@Column (name = "note")
 	private String note;
 	
+	// empty constructor
 	
 	public User () 
 	{
 		
 	}
+	
+	// constructor with fields
 	
 	public User(String fname, String lname, String entrydate, String entrytime, int glucose, String in_range, String note) 
 	{
@@ -57,7 +62,8 @@ public class User {
 		this.note = note;
 	}
 
-
+	// getters and setters
+	
 	public int getId() {
 		return id;
 	}
