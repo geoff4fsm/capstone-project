@@ -181,7 +181,7 @@ class CreateUser extends Component {
 
                             <div className="card-body">
 
-                                <form>  // user entry values assigned form
+                                <form> 
 
                                     <div className="form-group">
                                         <label> First Name </label>
@@ -218,8 +218,6 @@ class CreateUser extends Component {
                                         <input placeholder="Enter Note If Needed" name="note" className="form-control"
                                             value={this.state.note} onChange={this.changeNoteHandler} />
                                     </div>
-
-                                    // buttons to save user entries or cancel
 
                                     <button className="btn btn-success" onClick={this.saveUser}>Save</button>
                                     <button className="btn btn-danger" onClick={this.cancel} style={{ marginLeft: "10px" }}>Cancel</button>

@@ -33,9 +33,7 @@ class ViewUser extends Component {
             <div>               
                 <div className="card col-md-6 offset-md-3">
                     <h3 className="text-center text-white"> View User Details</h3>
-                    <div className="card-body">
-
-                        // table for user 
+                    <div className="card-body"> 
 
                         <div className="row">
                             <label> First Name: {this.state.user.fname}</label>
@@ -71,8 +69,6 @@ class ViewUser extends Component {
                             <label> Note: {this.state.user.note}</label>
                         </div>
                         <br></br>
-
-                        // button to return to home List user page
 
                         <button className="btn btn-info" onClick={this.cancel} >Return</button>
                     </div>
